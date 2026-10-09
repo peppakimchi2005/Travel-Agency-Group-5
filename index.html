@@ -8,27 +8,32 @@
 </head>
 <body>
     <header>
-        <a href="#" class="logo">WayFinder</a>
-        <ul class="nav-links">
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#tours">Tours</a></li>
-            <li><a href="#stories">Stories</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+        <div class="header-container">
+            <a href="#" class="logo">WayFinder</a>
+            <nav class="navigation">
+                    <ul class="nav-links">
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#destinations">Tours</a></li>
+                        <li><a href="#testimonial">Stories</a></li>
+                        <li><a href="#cta">Contact</a></li>
+                    </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
         <!-- Hero Section -->
-        <section id="hero" class="hero">
-            <h1>See the world without stress</h1>
+        <section id="hero" class="hero-container">
+            <h1>See the world without the stress</h1>
             <p class="subtext">Join thousands of satisfied travelers who have discovered the joy of stress-free exploration with WayFinder.</p>
-            <a href="#shop" class="btn">Plan your trip</a>
-            <a href="#tours" class="btn">Browse tours</a>
+            <a href="#shop" class="btn-main">Plan your trip</a>
+            <a href="#tours" class="btn-secondary">Browse tours</a>
         </section>
 
         <!-- Tours Section -->
-        <section id="destinations" class="destinations">
+        <section id="destinations" class="destination-container">
             <h2>Popular Destinations</h2>
+            <p>Flights, stays, and guides are all included in the price.</p>
             <div class="destination-grid">
 
                 <!-- Amsterdam -->
@@ -100,40 +105,36 @@
             </div>
         </section>
 
-        <section id="testimonial" class="testimonial">
-            <div class="container">
-                <h2>What our travelers say</h2>
+        <section id="testimonial" class="testimonial-container">
+            <h2>What our travelers say</h2>
 
-                <div class="testimonial-grid">
-                    <div class="testimonial-card">
-                        <p>"WayFinder made my trip to Europe unforgettable! The itinerary was perfect and stress-free."</p>
-                        <h4>- Phini S., Malaysia</h4>
-                    </div>
-                    <div class="testimonial-card">
-                        <p>"I loved the personalized service and attention to detail. Highly recommend WayFinder!"</p>
-                        <h4>- Anja S., Berlin</h4>
-                    </div>
-                    <div class="testimonial-card">
-                        <p>"From start to finish, my experience with WayFinder was seamless and enjoyable."</p>
-                        <h4>- Sharon H., USA</h4>
-                    </div>
-            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"WayFinder made my trip to Europe unforgettable! The itinerary was perfect and stress-free."</p>
+                    <h4>- Phini S., Malaysia</h4>
+                </div>
+                <div class="testimonial-card">
+                    <p>"I loved the personalized service and attention to detail. Highly recommend WayFinder!"</p>
+                    <h4>- Anja S., Berlin</h4>
+                </div>
+                <div class="testimonial-card">
+                    <p>"From start to finish, my experience with WayFinder was seamless and enjoyable."</p>
+                    <h4>- Sharon H., USA</h4>
+                </div>
         </section>
 
         <!-- Call to action -->
-         <section id="cta" class="cta">
-            <div class="container">
-                <div class="cta-box">
-                    <h2>Ready to go somewhere new?</h2>
-                    <p>Tell us where you'd like to go and we will build a plan around you.</p>
-                    <a href="mailto:hello@wayfinder.example" class="btn">Plan your trip</a>
-                </div>
+         <section id="cta" class="cta-container">
+            <div class="cta-box">
+                <h2>Ready to go somewhere new?</h2>
+                <p>Tell us where you'd like to go and we will build a plan around you.</p>
+                <a href="mailto:hello@wayfinder.example" class="btn-main">Plan your trip</a>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-     <footer class="footer">
+     <footer class="footer-container">
         <p>&copy 2026 WayFinder. All rights reserved.</p>
         <p>hello@wayfinder.example</p>
      </footer>
