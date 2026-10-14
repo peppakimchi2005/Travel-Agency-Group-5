@@ -1,12 +1,24 @@
-import { useState } from 'react'
+/* presentation preferred*/
+import { Header } from './components/Header'
+import { Hero } from './components/Hero'
+import { Tours } from './components/Tours'
+import { Testimonials } from './components/Testimonials'
+import { Cta } from './components/Cta'
+import { Footer } from './components/Footer'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div>
-      <h1 className="text-4xl font-bold text-teal">WayFinder</h1>
-    </div>
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <Tours />
+        <Testimonials />
+        <Cta />
+      </main>
+      <Footer />
+    </>
   )
 }
 
