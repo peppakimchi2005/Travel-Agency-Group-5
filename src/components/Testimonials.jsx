@@ -20,7 +20,7 @@ export function Testimonials() {
         What our travelers say
       </h2>
 
-      <div className="grid grid-cols-1 gap-6 min-[901px]:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {testimonials.map((item) => (
           <div key={item.name} className="rounded-lg bg-sand p-6">
             <p className="italic text-blue">{item.quote}</p>
