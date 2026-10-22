@@ -8,7 +8,11 @@ const filters = [
   { label: '6+ days', test: (d) => d.days >= 6 },
 ]
 
+/* useState: It’s the component’s memory, a place to store a value that the screen depends on. */
 export function Tours() {
+    /* example: 
+       activeFilter & favorites: sticky note
+       setActiveFilter & setFavorites: pen */
   const [activeFilter, setActiveFilter] = useState('All')
   const [favorites, setFavorites] = useState([])
 
@@ -18,10 +22,13 @@ export function Tours() {
   function toggleFavorite(id) {
     setFavorites((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    //     already saved?    yes: remove it              no: add it
     )
   }
 
   return (
+    /* toLocaleString() converts the price to a formatted string. 1480 to 1,480 */
+    /* .map counts the items in the filters array */
     <section id="destinations" className="bg-sand px-5 py-[30px] sm:p-[50px]">
       <h2 className="mb-5 text-[2rem] font-bold text-teal sm:text-[2.5rem]">
         Popular Destinations
@@ -64,7 +71,8 @@ export function Tours() {
               <span className="rounded-full bg-teal-light px-3 py-1 text-[0.9rem] font-semibold text-white">
                 {place.days} days
               </span>
-              <span className="text-[1.2rem] font-bold text-blue">
+              
+              <span className="text-[1.2rem] font-bold text-blue"> 
                 ${place.price.toLocaleString()}
               </span>
             </div>
