@@ -102,9 +102,7 @@ export const savedDestinations = pgTable(
 // The 3 review cards in the testimonial section.
 export const testimonials = pgTable("testimonials", {
   id: serial("id").primaryKey(),
-  name: text("name").notNull(),
-  review: text("review").notNull(),
-  rating: integer("rating"), // optional, 1-5
-  imageUrl: text("image_url"), // optional avatar
+  quote: text("quote").notNull(),
+  name: text("name").notNull(), // includes the location, e.g. "Anja S., Berlin"
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });

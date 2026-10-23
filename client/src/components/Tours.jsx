@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router'
 import { FavoriteToggle } from './FavoriteToggle'
 import { formatPrice } from '../lib/format'
 
@@ -87,12 +88,14 @@ export function Tours() {
               key={place.id}
               className="overflow-hidden rounded-lg bg-white p-5 text-center"
             >
-              <img
-                src={place.image}
-                alt={place.alt}
-                className="block h-[200px] w-full rounded-lg object-cover"
-              />
-              <h3 className="mt-3 mb-2 text-lg font-bold text-teal">{place.name}</h3>
+              <Link to={`/destinations/${place.slug}`}>
+                <img
+                  src={place.image}
+                  alt={place.alt}
+                  className="block h-[200px] w-full rounded-lg object-cover"
+                />
+                <h3 className="mt-3 mb-2 text-lg font-bold text-teal">{place.name}</h3>
+              </Link>
               <p className="mb-3 text-[0.9rem] text-blue">{place.text}</p>
               <div className="m-4 flex items-center justify-between border-t border-thistle pt-3">
                 <span className="rounded-full bg-teal-light px-3 py-1 text-[0.9rem] font-semibold text-white">

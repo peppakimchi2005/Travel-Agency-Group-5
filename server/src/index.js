@@ -8,6 +8,7 @@ import cors from "cors";
 import { toNodeHandler } from "better-auth/node";
 import { auth } from "./auth.js";
 import { productsRouter } from "./routes/products.js";
+import { testimonialsRouter } from "./routes/testimonials.js";
 
 const app = express();
 const PORT = Number(process.env.PORT ?? 3000);
@@ -25,6 +26,7 @@ app.all("/api/auth/*splat", toNodeHandler(auth));
 app.use(express.json());
 
 app.use("/api/products", productsRouter);
+app.use("/api/testimonials", testimonialsRouter);
 
 app.get("/api/health", (_req, res) => {
   res.json({ ok: true, time: new Date().toISOString() });
