@@ -1,24 +1,38 @@
 /* presentation preferred*/
+import { BrowserRouter, Routes, Route } from 'react-router'
 import { Header } from './components/Header'
 import { Hero } from './components/Hero'
 import { Tours } from './components/Tours'
 import { Testimonials } from './components/Testimonials'
 import { Cta } from './components/Cta'
 import { Footer } from './components/Footer'
+import { Login } from './components/Login'
 
-function App() {
-
+/* The home page: all the sections that used to sit directly inside App. */
+function Home() {
   return (
     <>
+      <Hero />
+      <Tours />
+      <Testimonials />
+      <Cta />
+    </>
+  )
+}
+
+function App() {
+  return (
+    <BrowserRouter>
       <Header />
       <main>
-        <Hero />
-        <Tours />
-        <Testimonials />
-        <Cta />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login mode="login" />} />
+          <Route path="/signup" element={<Login mode="signup" />} />
+        </Routes>
       </main>
       <Footer />
-    </>
+    </BrowserRouter>
   )
 }
 
