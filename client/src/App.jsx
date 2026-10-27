@@ -8,6 +8,7 @@ import { Cta } from './components/Cta'
 import { Footer } from './components/Footer'
 import { Login } from './components/Login'
 import { DestinationDetail } from './components/DestinationDetail'
+import { OrderSuccess } from './components/OrderSuccess'
 
 /* The home page: all the sections that used to sit directly inside App. */
 function Home() {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/login" element={<Login mode="login" />} />
           <Route path="/signup" element={<Login mode="signup" />} />
           <Route path="/destinations/:slug" element={<DestinationDetail />} />
+          <Route path="/order/success" element={<OrderSuccess />} />
         </Routes>
       </main>
       <Footer />

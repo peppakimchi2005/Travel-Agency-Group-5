@@ -8,6 +8,8 @@ export function DestinationDetail() {
   const [destination, setDestination] = useState(null)
   const [loading, setLoading] = useState(true)
   const [notFound, setNotFound] = useState(false)
+  const [buying, setBuying] = useState(false)
+  const [buyError, setBuyError] = useState('')
 
   useEffect(() => {
     async function loadDestination() {
@@ -31,6 +33,36 @@ export function DestinationDetail() {
     loadDestination()
   }, [slug])
 
+  async function handleBuyNow() {
+  setBuying(true)
+  setBuyError('')
+  try {
+    const res = await fetch('/api/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include', // sends the login cookie so requireAuth can see you
+      body: JSON.stringify({ destinationId: destination.id }), // only the id, never a price
+    })
+
+    if (res.status === 401) {
+      window.location.href = '/login' // not signed in
+      return
+    }
+
+    const data = await res.json()
+    if (!res.ok) {
+      setBuyError(data.error || 'Could not start checkout.')
+      setBuying(false)
+      return
+    }
+
+    window.location.href = data.url // Stripe's hosted checkout page
+  } catch (err) {
+    console.error('Checkout failed', err)
+    setBuyError('Something went wrong. Please try again.')
+    setBuying(false)
+  }
+}
   if (loading) {
     return <p className="mx-auto max-w-[1100px] px-6 py-16 text-blue">Loading...</p>
   }
@@ -80,12 +112,13 @@ export function DestinationDetail() {
 
           <button
             type="button"
-            disabled
-            className="mt-6 cursor-not-allowed rounded-full bg-teal px-6 py-3 font-semibold text-white opacity-50"
-            title="Booking is coming soon"
+            onClick={handleBuyNow}
+            disabled={buying}
+            className="mt-6 rounded-full bg-teal px-6 py-3 font-semibold text-white hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            Book this trip
+            {buying ? 'Redirecting to payment...' : 'Book this trip'}
           </button>
+          {buyError && <p className="mt-3 text-sm text-red-600">{buyError}</p>}
         </div>
       </div>
     </div>
