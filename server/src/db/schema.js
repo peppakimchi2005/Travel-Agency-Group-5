@@ -106,3 +106,38 @@ export const testimonials = pgTable("testimonials", {
   name: text("name").notNull(), // includes the location, e.g. "Anja S., Berlin"
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
+
+// =============================================================================
+// Orders (Stripe payments)
+// =============================================================================
+
+// One row per purchase attempt. Created BEFORE sending the user to Stripe,
+// with status "pending". Only the webhook may change it to "paid".
+export const orders = pgTable("orders", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  status: text("status").notNull().default("pending"), // pending | paid | failed | expired
+  totalAmount: integer("total_amount").notNull(), // whole currency units, same as destinations.price
+  currency: text("currency").notNull().default("eur"),
+  stripeSessionId: text("stripe_session_id").unique(), // set after the Checkout Session is created
+  stripePaymentIntentId: text("stripe_payment_intent_id"), // filled in by the webhook
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  paidAt: timestamp("paid_at"), // set by the webhook when payment completes
+});
+
+// What was bought in each order. We copy the name and price at purchase time,
+// so the order history stays correct even if the destination changes later.
+export const orderItems = pgTable("order_items", {
+  id: serial("id").primaryKey(),
+  orderId: integer("order_id")
+    .notNull()
+    .references(() => orders.id, { onDelete: "cascade" }),
+  destinationId: integer("destination_id")
+    .notNull()
+    .references(() => destinations.id),
+  name: text("name").notNull(), // snapshot of destinations.name
+  unitPrice: integer("unit_price").notNull(), // snapshot of destinations.price
+  quantity: integer("quantity").notNull().default(1),
+});

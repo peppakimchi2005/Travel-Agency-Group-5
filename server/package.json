@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "dev": "node --watch src/index.js",
-  "db:push": "drizzle-kit push",
-  "db:seed": "node src/db/seed.js",
-  "db:studio": "drizzle-kit studio"
-},
+    "dev": "node --watch-path=./src src/index.js",
+    "db:push": "drizzle-kit push",
+    "db:seed": "node src/db/seed.js",
+    "db:studio": "drizzle-kit studio"
+  },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
     "better-auth": "^1.7.12",
@@ -19,6 +19,7 @@
     "postgres": "^3.4.9",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "stripe": "^23.0.1",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
